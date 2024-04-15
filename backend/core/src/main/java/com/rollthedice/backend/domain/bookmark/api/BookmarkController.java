@@ -1,4 +1,4 @@
-package com.rollthedice.backend.domain.bookmark.controller;
+package com.rollthedice.backend.domain.bookmark.api;
 
 import com.rollthedice.backend.domain.bookmark.service.BookmarkService;
 import com.rollthedice.backend.domain.news.dto.response.NewsResponse;
@@ -15,11 +15,12 @@ import java.util.List;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("bookmark")
-public class BookmarkController {
+public class BookmarkController implements BookmarkApi {
     private final BookmarkService bookmarkService;
 
     @ResponseStatus(HttpStatus.OK)
     @GetMapping("")
+    @Override
     public List<NewsResponse> getBookmarked(final Pageable pageable) {
         return bookmarkService.getBookmarkedNews(pageable);
     }
